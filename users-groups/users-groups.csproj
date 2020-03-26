@@ -12,4 +12,15 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\users-groups.data\users-groups.data.csproj" />
+    <ProjectReference Include="..\users-groups.service\users-groups.service.csproj" />
+  </ItemGroup>
+
 </Project>
