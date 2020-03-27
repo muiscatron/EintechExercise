@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using users_groups.Models;
 using users_groups.service.GroupService;
 using users_groups.service.GroupService.dto;
+using users_groups.service.PersonService;
+using users_groups.service.PersonService.dto;
 using users_groups.service.SearchService;
 using users_groups.service.SearchService.dto;
 
@@ -18,11 +20,14 @@ namespace UsersGroups.Controllers
     {
         private readonly ISearchService _searchService;
         private readonly IGroupService _groupService;
+        private readonly IPersonService _personService;
 
-        public HomeController(ISearchService searchService, IGroupService groupService)
+
+        public HomeController(ISearchService searchService, IGroupService groupService, IPersonService personService)
         {
             _searchService = searchService;
             _groupService = groupService;
+            _personService = personService;
         }
 
         public async Task<IActionResult> Index(string group, string searchString)
@@ -48,20 +53,21 @@ namespace UsersGroups.Controllers
             return View();
         }
 
-        public IActionResult AddGroup()
+        public async Task<IActionResult> AddPerson()
         {
-            var model = new GroupViewModel();
-            return PartialView("_GroupModalPartial", model);
+            var model = new CreatePersonViewModel();
+            var groups = await _groupService.GetGroups();
+            model.Groups = new SelectList(groups, "GroupId", "GroupName");
+            return PartialView("_CreatePersonModalPartial", model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddGroup(GroupViewModel model)
+        public async Task<IActionResult> AddPerson(CreatePersonViewModel model)
         {
 
-            await _groupService.CreateGroup(new GroupDto { GroupName = model.GroupName});
+            var createdPerson = await _personService.CreatePerson(new CreatePersonDto { Name = model.Name, GroupId = model.GroupId});
 
-            return PartialView("_GroupModalPartial", model);
+            return PartialView("_CreatePersonModalPartial", new CreatePersonViewModel() { PersonId = createdPerson.PersonId, Name = createdPerson.Name, GroupId = createdPerson.GroupId});
         }
-
     }
 }

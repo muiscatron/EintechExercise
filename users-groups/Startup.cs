@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
 using users_groups.data;
 using users_groups.service.GroupService;
+using users_groups.service.PersonService;
 using users_groups.service.SearchService;
 
 
@@ -35,7 +36,7 @@ namespace UsersGroups
                 d.UseSqlServer(Configuration.GetConnectionString("default")));
             services.AddScoped<ISearchService, SearchService>();
             services.AddScoped<IGroupService, GroupService>();
-
+            services.AddScoped<IPersonService, PersonService>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

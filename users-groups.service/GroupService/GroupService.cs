@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using users_groups.data;
 using users_groups.service.GroupService.dto;
 
@@ -18,11 +20,10 @@ namespace users_groups.service.GroupService
             _context = context;
         }
 
-        public async Task<GroupDto> CreateGroup(GroupDto @group)
+        public async Task<List<GroupDto>> GetGroups()
         {
-            var addedItem = await _context.Groups.AddAsync(new Group {GroupName = group.GroupName});
-            _context.SaveChanges();
-            return new GroupDto { GroupId = addedItem.Entity.Id, GroupName = addedItem.Entity.GroupName };
+            var groups = await _context.Groups.Select(g => new GroupDto {GroupId = g.Id, GroupName = g.GroupName}).ToListAsync();
+            return groups;
         }
     }
 }

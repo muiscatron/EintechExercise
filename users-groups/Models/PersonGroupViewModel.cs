@@ -6,8 +6,8 @@ namespace users_groups.Models
 {
     public class PersonGroupViewModel
     {
-        public List<PersonViewModel> Persons;
-        public SelectList Groups;
+        public List<PersonViewModel> Persons { get; set; }
+        public SelectList Groups { get; set; }
         public string Group { get; set; }
     }
 }

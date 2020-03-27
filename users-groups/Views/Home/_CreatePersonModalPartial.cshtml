@@ -1,21 +1,24 @@
-﻿@model users_groups.Models.GroupViewModel
+﻿@model users_groups.Models.CreatePersonViewModel
 
-<div class="modal fade" id="add-group" tabindex="-1" role="dialog" aria-labelledby="addGroupLabel" aria-hidden="true">
+<div class="modal fade" id="add-person" tabindex="-1" role="dialog" aria-labelledby="addPersonLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addGroupLabel">Add Group</h5>
+                <h5 class="modal-title" id="addPersonLabel">Add Person</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form asp-action="AddGroup">
+                <form asp-action="AddPerson">
                     <div class="form-group">
                         <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
-                        <label asp-for="GroupName"></label>
-                        <input asp-for="GroupName" class="form-control" />
-                        <span asp-validation-for="GroupName" class="text-danger"></span>
+                        <label asp-for="Name"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                        <label asp-for="GroupId">Group</label>
+                        <select asp-for="GroupId" class="custom-select" asp-items="Model.Groups">
+                        </select>
                     </div>
                 </form>
             </div>

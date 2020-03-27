@@ -9,6 +9,6 @@ namespace users_groups.service.GroupService
 {
     public interface IGroupService
     {
-        Task<GroupDto> CreateGroup(GroupDto group);
+        Task<List<GroupDto>> GetGroups();
     }
 }
