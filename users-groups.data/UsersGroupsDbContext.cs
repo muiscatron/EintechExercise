@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
 
 namespace users_groups.data
 {
@@ -10,9 +12,19 @@ namespace users_groups.data
         public DbSet<Person> Persons { get; set; }
         public DbSet<Group> Groups { get; set; }
 
+        public static readonly LoggerFactory MyLoggerFactory
+            = new LoggerFactory(new[] { new ConsoleLoggerProvider((_, __) => true, true) });
+
+        public UsersGroupsDbContext(DbContextOptions<UsersGroupsDbContext> options)
+            : base(options)
+        { }
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=.\DEVLOCAL;Database=UsersGroupsDb;Trusted_Connection=True;");
+            optionsBuilder
+                .UseLoggerFactory(MyLoggerFactory)
+                .UseSqlServer(@"Server=.\DEVLOCAL;Database=UsersGroupsDb;Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

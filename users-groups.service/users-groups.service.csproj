@@ -5,4 +5,8 @@
     <RootNamespace>users_groups.service</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\users-groups.data\users-groups.data.csproj" />
+  </ItemGroup>
+
 </Project>

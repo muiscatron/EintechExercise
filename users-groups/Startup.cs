@@ -10,7 +10,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
 using users_groups.data;
+using users_groups.service.SearchService;
+
 
 namespace UsersGroups
 {
@@ -28,6 +32,7 @@ namespace UsersGroups
             services.AddMvc();
             services.AddDbContext<UsersGroupsDbContext>(d =>
                 d.UseSqlServer(Configuration.GetConnectionString("default")));
+            services.AddScoped<ISearchService, SearchService>();
 
         }
 

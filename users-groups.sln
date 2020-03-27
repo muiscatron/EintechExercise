@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "users-groups", "users-groups\users-groups.csproj", "{343D6E0E-6701-4BFE-9595-5B53A50A8F3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "users-groups", "users-groups\users-groups.csproj", "{343D6E0E-6701-4BFE-9595-5B53A50A8F3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "users-groups.data", "users-groups.data\users-groups.data.csproj", "{774F9EF7-0863-4879-913A-AB0B0B5BA0FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "users-groups.data", "users-groups.data\users-groups.data.csproj", "{774F9EF7-0863-4879-913A-AB0B0B5BA0FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "users-groups.service", "users-groups.service\users-groups.service.csproj", "{B32FC4FD-7E61-45D9-9AF7-E407A2234B6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "users-groups.service", "users-groups.service\users-groups.service.csproj", "{B32FC4FD-7E61-45D9-9AF7-E407A2234B6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
