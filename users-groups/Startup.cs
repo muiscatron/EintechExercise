@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
 using users_groups.data;
+using users_groups.service.GroupService;
 using users_groups.service.SearchService;
 
 
@@ -33,6 +34,7 @@ namespace UsersGroups
             services.AddDbContext<UsersGroupsDbContext>(d =>
                 d.UseSqlServer(Configuration.GetConnectionString("default")));
             services.AddScoped<ISearchService, SearchService>();
+            services.AddScoped<IGroupService, GroupService>();
 
         }
 

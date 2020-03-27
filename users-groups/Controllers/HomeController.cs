@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using users_groups.Models;
+using users_groups.service.GroupService;
+using users_groups.service.GroupService.dto;
 using users_groups.service.SearchService;
 using users_groups.service.SearchService.dto;
 
@@ -15,10 +17,12 @@ namespace UsersGroups.Controllers
     public class HomeController : Controller
     {
         private readonly ISearchService _searchService;
+        private readonly IGroupService _groupService;
 
-        public HomeController(ISearchService searchService)
+        public HomeController(ISearchService searchService, IGroupService groupService)
         {
             _searchService = searchService;
+            _groupService = groupService;
         }
 
         public async Task<IActionResult> Index(string group, string searchString)
@@ -43,5 +47,21 @@ namespace UsersGroups.Controllers
         {
             return View();
         }
+
+        public IActionResult AddGroup()
+        {
+            var model = new GroupViewModel();
+            return PartialView("_GroupModalPartial", model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddGroup(GroupViewModel model)
+        {
+
+            await _groupService.CreateGroup(new GroupDto { GroupName = model.GroupName});
+
+            return PartialView("_GroupModalPartial", model);
+        }
+
     }
 }
